@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 using UnityEngine.EventSystems;
+using System;
+
 public class CanvasManager : MonoBehaviour,IPointerDownHandler,IBeginDragHandler, IEndDragHandler, IPointerUpHandler
 {
     #region Debug
@@ -23,10 +25,10 @@ public class CanvasManager : MonoBehaviour,IPointerDownHandler,IBeginDragHandler
     int total;
 
     #endregion
-    int ScreenProtecttick=0;
+    int ShowBarTime=10,HideBarTime = 10;
     [SerializeField]
     UIClinet[] SectionUIClinet;
-    IEnumerator coroutine;
+    IEnumerator coroutine,HideCoroutine;
     public VideoPlayer ScreenProtectVideo;
     public bool bScreenProtect;
     [SerializeField]
@@ -36,15 +38,17 @@ public class CanvasManager : MonoBehaviour,IPointerDownHandler,IBeginDragHandler
     // private GraphicRaycaster DebugCanvasGraphicRayCaster/*, ScreenProtectGraphicRaycast*/;
     //[SerializeField]
     //public Color[] color = new Color[10];
-    
+
     // Use this for initialization
-    void Start () {
-        if(instance == null)
+    void Start()
+    {
+        if (instance == null)
         {
             instance = this;
-
-        }
-        coroutine = ScreenProtectIE(ScreenProtectWaitTime);
+       }
+        coroutine = ShowBar();
+        HideCoroutine = HideBar();
+        StartCoroutine(coroutine);
     }
 	
 	// Update is called once per frame
@@ -54,13 +58,23 @@ public class CanvasManager : MonoBehaviour,IPointerDownHandler,IBeginDragHandler
         }
 
         if (Input.GetMouseButtonDown(0)) {
-            MainTitleAinamtionCtr.instance.ShowAndHideMainTitle(1, true);
-            MainTitleAinamtionCtr.instance.isShowMaintitle = true;
-            ScreenProtecttick = 0;
-            Debug.Log("hit");
             if (MainTitleAinamtionCtr.instance.isShowMaintitle)
-            StopCoroutine(coroutine);
-            StartCoroutine(coroutine);
+            {
+                HideBarTime = 10;
+            }
+            else {
+                ShowBarTime = 1;
+            }
+
+             
+
+
+            //ScreenProtecttick = 0;
+            //Debug.Log("hit");
+            //if (MainTitleAinamtionCtr.instance.isShowMaintitle) {
+
+            //    StartCoroutine(coroutine);
+            //}
         }
     }
 
@@ -94,26 +108,45 @@ public class CanvasManager : MonoBehaviour,IPointerDownHandler,IBeginDragHandler
 
 
 
-
-
-
-    public IEnumerator ScreenProtectIE(float _WaitTime,int _tick = 0) {
-        ScreenProtecttick = _tick;
-        while (MainTitleAinamtionCtr.instance.isShowMaintitle)
+    public IEnumerator ShowBar()
+    {
+        while (ShowBarTime >= 0)
         {
-            ScreenProtecttick++;
-            Debug.Log(ScreenProtecttick);
             yield return new WaitForSeconds(1);
-            if (ScreenProtecttick == _WaitTime) {
-                MainTitleAinamtionCtr.instance.ShowAndHideMainTitle(1, false);
-                MainTitleAinamtionCtr.instance.isShowMaintitle = false;
+            print(ShowBarTime);
+            ShowBarTime--;
+            if (ShowBarTime == 0) {
+                Debug.Log("Show Bar");
+                MainTitleAinamtionCtr.instance.ShowAndHideMainTitle(1, true);
+                MainTitleAinamtionCtr.instance.isShowMaintitle = true;
+                HideBarTime = 10;
+                StartCoroutine(HideBar());
+
             }
         }
-    
+
+    }
+
+    public IEnumerator HideBar() {
+        while (HideBarTime >= 0)
+        {
+            yield return new WaitForSeconds(1);
+            print(HideBarTime);
+            HideBarTime--;
+            if (HideBarTime == 0)
+            {
+                Debug.Log("Hide Bar");
+                MainTitleAinamtionCtr.instance.ShowAndHideMainTitle(1, false);
+                MainTitleAinamtionCtr.instance.isShowMaintitle = false;
+                ShowBarTime = 10;
+                StartCoroutine(ShowBar());
+
+            }
+        }
     }
 
 
-    public void showFrameRate() {
+        public void showFrameRate() {
         if (FrameRateToggle.isOn)
         {
             StartCoroutine(UpdateUpdateFrameRate(1f));
@@ -130,7 +163,7 @@ public class CanvasManager : MonoBehaviour,IPointerDownHandler,IBeginDragHandler
         int width = int.Parse( SetReslitionWidth.text);
         int height = int.Parse(SetReslitionHeight.text);
         Screen.SetResolution(width, height, false,120);
-        Debug.Log("set res");
+        //Debug.Log("set res");
     }
 
     public IEnumerator UpdateUpdateFrameRate(float waitTime)

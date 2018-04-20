@@ -28,8 +28,6 @@ public class MainTitleAinamtionCtr : MonoBehaviour {
     public void ShowAndHideMainTitle(int AnimationNum , bool b) {
 
         if (isShowMaintitle != b){
-            StartCoroutine(CanvasManager.instance.ScreenProtectIE(CanvasManager.instance.ScreenProtectWaitTime));
-
             switch (AnimationNum)
             {
                 case 1:
