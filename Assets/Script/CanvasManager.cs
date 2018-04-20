@@ -116,7 +116,7 @@ public class CanvasManager : MonoBehaviour,IPointerDownHandler,IBeginDragHandler
             print(ShowBarTime);
             ShowBarTime--;
             if (ShowBarTime == 0) {
-                Debug.Log("Show Bar");
+                //Debug.Log("Show Bar");
                 MainTitleAinamtionCtr.instance.ShowAndHideMainTitle(1, true);
                 MainTitleAinamtionCtr.instance.isShowMaintitle = true;
                 HideBarTime = 10;
@@ -135,7 +135,7 @@ public class CanvasManager : MonoBehaviour,IPointerDownHandler,IBeginDragHandler
             HideBarTime--;
             if (HideBarTime == 0)
             {
-                Debug.Log("Hide Bar");
+              //  Debug.Log("Hide Bar");
                 MainTitleAinamtionCtr.instance.ShowAndHideMainTitle(1, false);
                 MainTitleAinamtionCtr.instance.isShowMaintitle = false;
                 ShowBarTime = 10;

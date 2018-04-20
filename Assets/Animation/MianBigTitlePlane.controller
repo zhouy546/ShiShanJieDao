@@ -807,21 +807,21 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1102379564568972720}
-    m_Position: {x: 672, y: 612, z: 0}
+    m_Position: {x: 684, y: 624, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102695503972553482}
     m_Position: {x: 0, y: 0, z: 0}
   m_ChildStateMachines:
   - serializedVersion: 1
     m_StateMachine: {fileID: 1107651026262496324}
-    m_Position: {x: 552, y: 288, z: 0}
+    m_Position: {x: 408, y: 132, z: 0}
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_EntryPosition: {x: 708, y: 864, z: 0}
-  m_ExitPosition: {x: 936, y: 84, z: 0}
+  m_ExitPosition: {x: 1008, y: 84, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 1102379564568972720}
 --- !u!1107 &1107651026262496324
