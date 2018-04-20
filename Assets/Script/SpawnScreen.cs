@@ -26,6 +26,7 @@ public class SpawnScreen : MonoBehaviour {
                 GameObject sp = Instantiate(ScreenPrefab);
                 sp.transform.SetParent(this.transform);
                 sp.GetComponent<AVPlayOnUGUI>().SetupGui(i);
+                sp.GetComponent<AVPlayOnUGUI>().InitializeMainTitleAnimList();
                 spList.Add(sp);
             }
 
@@ -33,6 +34,7 @@ public class SpawnScreen : MonoBehaviour {
             {
                 spList[i].GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
                 spList[i].GetComponent<RectTransform>().localScale = Vector3.one;
+                spList[i].GetComponent<AVPlayOnUGUI>().InitializeMainTitleAnimList();
             }
         }//spaw one
         //else {

@@ -26,7 +26,7 @@ public class CanvasManager : MonoBehaviour,IPointerDownHandler,IBeginDragHandler
     int ScreenProtecttick=0;
     [SerializeField]
     UIClinet[] SectionUIClinet;
-    
+    IEnumerator coroutine;
     public VideoPlayer ScreenProtectVideo;
     public bool bScreenProtect;
     [SerializeField]
@@ -44,14 +44,23 @@ public class CanvasManager : MonoBehaviour,IPointerDownHandler,IBeginDragHandler
             instance = this;
 
         }
-     
-        //StartCoroutine(ScreenProtectIE(ScreenProtectWaitTime));
+        coroutine = ScreenProtectIE(ScreenProtectWaitTime);
     }
 	
 	// Update is called once per frame
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             DebugCanvas.gameObject.SetActive(true);
+        }
+
+        if (Input.GetMouseButtonDown(0)) {
+            MainTitleAinamtionCtr.instance.ShowAndHideMainTitle(1, true);
+            MainTitleAinamtionCtr.instance.isShowMaintitle = true;
+            ScreenProtecttick = 0;
+            Debug.Log("hit");
+            if (MainTitleAinamtionCtr.instance.isShowMaintitle)
+            StopCoroutine(coroutine);
+            StartCoroutine(coroutine);
         }
     }
 
@@ -74,7 +83,9 @@ public class CanvasManager : MonoBehaviour,IPointerDownHandler,IBeginDragHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-      //  ScreenProtect();
+
+
+        //  ScreenProtect();
     }
 
     //void SetGraphicRayCaster(GraphicRaycaster raycaster,bool active) {
@@ -83,47 +94,22 @@ public class CanvasManager : MonoBehaviour,IPointerDownHandler,IBeginDragHandler
 
 
 
-    void ScreenProtect() {
-        if (!bScreenProtect)
-        {
-            ScreenProtecttick = 0;
-            StopCoroutine("ScreenProtectIE");
-        }
-        else
-        {
-            TurnOffScreenProtect();
-            StartCoroutine(ScreenProtectIE(ScreenProtectWaitTime));
-        }
-    }
 
-    void TurnOffScreenProtect() {
-        bScreenProtect = false;
-        RawImage rawImage = ScreenProtectVideo.GetComponent<RawImage>();
-        RawImageAlphaLerp(rawImage, 0, .5f, .5f);
-    }
-
-    void SetupCanvas()
-    {
-
-    }
 
 
     public IEnumerator ScreenProtectIE(float _WaitTime,int _tick = 0) {
         ScreenProtecttick = _tick;
-          RawImage rawImage = ScreenProtectVideo.GetComponent<RawImage>();
-        while (!bScreenProtect)
+        while (MainTitleAinamtionCtr.instance.isShowMaintitle)
         {
             ScreenProtecttick++;
+            Debug.Log(ScreenProtecttick);
             yield return new WaitForSeconds(1);
-            //Debug.Log(ScreenProtecttick);
             if (ScreenProtecttick == _WaitTime) {
-                bScreenProtect = true;
-                ScreenProtectVideo.Play();
-                RawImageAlphaLerp(rawImage, 1, .5f,.5f);
-                StopCoroutine("ScreenProtectIE");
+                MainTitleAinamtionCtr.instance.ShowAndHideMainTitle(1, false);
+                MainTitleAinamtionCtr.instance.isShowMaintitle = false;
             }
         }
-     
+    
     }
 
 

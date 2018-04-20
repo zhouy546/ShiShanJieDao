@@ -20,13 +20,33 @@ public class AVPlayOnUGUI : MonoBehaviour
         RawImage = 2
     }
 
+    public Animator GetAnimator(UIClinet _clinet) {
+        Animator animator = _clinet.GetComponent<Animator>();
+        return animator;
+    }
+
+    public void InitializeMainTitleAnimList() {
+        for (int i = 0; i < iClinet.Length; i++)
+        {
+           MainTitleAinamtionCtr.instance.MainTitleAnimatorList.Add(GetAnimator(iClinet[i]));
+            SetLeftAndRight(i);
+        }
+    }
+
+    private void SetLeftAndRight(int i) {
+        if (i == 0) {
+            GetAnimator(iClinet[i]).SetBool("bPlayLeft", true);
+        }
+        if (i == 1) {
+            GetAnimator(iClinet[i]).SetBool("bPlayRight", true);
+        }
+    }
 
    public  void SetupGui(int Num) {
         int value = Num*2;
         AssignVideoClip(Num);
         iClinet[0].setupDefalutIDandBigTitle(value);
         iClinet[1].setupDefalutIDandBigTitle(value+1);
-
     }
 
     void AssignVideoClip(int Num)
