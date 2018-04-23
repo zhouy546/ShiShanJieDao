@@ -35,7 +35,7 @@ public class CanvasManager : MonoBehaviour,IPointerDownHandler,IBeginDragHandler
     public int DefaultScreenWidth, DefaultScreenHeight,ScreenProtectWaitTime;
     public static CanvasManager instance;
 
-    int value;
+
     // [SerializeField]
     // private GraphicRaycaster DebugCanvasGraphicRayCaster/*, ScreenProtectGraphicRaycast*/;
     //[SerializeField]
@@ -125,6 +125,7 @@ public class CanvasManager : MonoBehaviour,IPointerDownHandler,IBeginDragHandler
             ShowBarTime--;
             if (ShowBarTime == 0) {
                 // Debug.Log("Show Bar");
+                int value;
                 value = RandomInt(1, 2);
                 MainTitleAinamtionCtr.instance.ShowAndHideMainTitle(value, true);
                 MainTitleAinamtionCtr.instance.isShowMaintitle = true;
@@ -145,6 +146,8 @@ public class CanvasManager : MonoBehaviour,IPointerDownHandler,IBeginDragHandler
             if (HideBarTime == 0)
             {
                 //  Debug.Log("Hide Bar");
+                int value;
+                value = RandomInt(1, 2);
                 MainTitleAinamtionCtr.instance.ShowAndHideMainTitle(value, false);
                 MainTitleAinamtionCtr.instance.isShowMaintitle = false;
                 ShowBarTime = 10;

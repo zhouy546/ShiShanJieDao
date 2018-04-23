@@ -579,4 +579,11 @@ public class UIClinet : MonoBehaviour, IPointerDownHandler
     public void SetxPos(float x) {
         this.transform.localPosition = new Vector3(x, this.transform.localPosition.y, this.transform.localPosition.z);
     }
+
+    public void ResetNumber()
+    {
+
+       this.GetComponent<Animator>().SetInteger("AnimnationNum", 0);
+
+    }
 }

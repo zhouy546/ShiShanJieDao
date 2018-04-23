@@ -31,11 +31,11 @@ public class MainTitleAinamtionCtr : MonoBehaviour {
             switch (AnimationNum)
             {
                 case 1:
-                    PlayAnimation_1(b,AnimationNum);
+                    PlayAnimation_1(AnimationNum);
                     break;
 
                 case 2:
-                    StartCoroutine(PlayAnimation_2(b,AnimationNum));
+                    StartCoroutine(PlayAnimation_2(AnimationNum));
                     break;
 
                 default:
@@ -46,16 +46,15 @@ public class MainTitleAinamtionCtr : MonoBehaviour {
 
 
 
-    void PlayAnimation_1(bool b,int num) {
+    void PlayAnimation_1(int num) {
         foreach (Animator item in MainTitleAnimatorList)
         {
-            item.SetBool("bPlayAnimation1", b);
             item.SetInteger("AnimnationNum", num);
             item.GetComponent<UIClinet>().rightMenuBar.Close("关闭");
         }
     }
 
-    IEnumerator PlayAnimation_2(bool b, int num) {
+    IEnumerator PlayAnimation_2(int num) {
         foreach (Animator item in MainTitleAnimatorList)
         {
           //  Debug.Log("关闭");
@@ -65,9 +64,10 @@ public class MainTitleAinamtionCtr : MonoBehaviour {
         foreach (Animator item in MainTitleAnimatorList)
         {
            // Debug.Log("动画");
-            item.SetBool("bPlayAnimation2", b);
             item.SetInteger("AnimnationNum", num);
             yield return new WaitForSeconds(.5f);
         }
     }
+
+
 }
