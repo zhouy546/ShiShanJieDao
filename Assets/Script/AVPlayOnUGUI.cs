@@ -26,6 +26,7 @@ public class AVPlayOnUGUI : MonoBehaviour
     }
 
     public void InitializeMainTitleAnimList() {
+     //   Debug.Log(iClinet.Length);
         for (int i = 0; i < iClinet.Length; i++)
         {
            MainTitleAinamtionCtr.instance.MainTitleAnimatorList.Add(GetAnimator(iClinet[i]));

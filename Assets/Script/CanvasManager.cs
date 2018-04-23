@@ -34,6 +34,8 @@ public class CanvasManager : MonoBehaviour,IPointerDownHandler,IBeginDragHandler
     [SerializeField]
     public int DefaultScreenWidth, DefaultScreenHeight,ScreenProtectWaitTime;
     public static CanvasManager instance;
+
+    int value;
     // [SerializeField]
     // private GraphicRaycaster DebugCanvasGraphicRayCaster/*, ScreenProtectGraphicRaycast*/;
     //[SerializeField]
@@ -106,7 +108,13 @@ public class CanvasManager : MonoBehaviour,IPointerDownHandler,IBeginDragHandler
     //    raycaster.enabled = active;
     //}
 
-
+    public int RandomInt(float min, float Max) {
+        float fvalue = UnityEngine.Random.Range(min, Max);
+       // Debug.Log(fvalue);
+    int  value = Mathf.RoundToInt(fvalue);
+     //   Debug.Log(value);
+        return value;
+    }
 
     public IEnumerator ShowBar()
     {
@@ -116,8 +124,9 @@ public class CanvasManager : MonoBehaviour,IPointerDownHandler,IBeginDragHandler
             print(ShowBarTime);
             ShowBarTime--;
             if (ShowBarTime == 0) {
-                //Debug.Log("Show Bar");
-                MainTitleAinamtionCtr.instance.ShowAndHideMainTitle(1, true);
+                // Debug.Log("Show Bar");
+                value = RandomInt(1, 2);
+                MainTitleAinamtionCtr.instance.ShowAndHideMainTitle(value, true);
                 MainTitleAinamtionCtr.instance.isShowMaintitle = true;
                 HideBarTime = 10;
                 StartCoroutine(HideBar());
@@ -135,8 +144,8 @@ public class CanvasManager : MonoBehaviour,IPointerDownHandler,IBeginDragHandler
             HideBarTime--;
             if (HideBarTime == 0)
             {
-              //  Debug.Log("Hide Bar");
-                MainTitleAinamtionCtr.instance.ShowAndHideMainTitle(1, false);
+                //  Debug.Log("Hide Bar");
+                MainTitleAinamtionCtr.instance.ShowAndHideMainTitle(value, false);
                 MainTitleAinamtionCtr.instance.isShowMaintitle = false;
                 ShowBarTime = 10;
                 StartCoroutine(ShowBar());

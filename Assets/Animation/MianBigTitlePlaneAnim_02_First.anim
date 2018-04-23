@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: MianBigTitlePlaneAnim_01_next
+  m_Name: MianBigTitlePlaneAnim_02_First
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -21,7 +21,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0.016666668
-        value: -460
+        value: 460
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -109,7 +109,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0.016666668
-        value: -460
+        value: 460
         inSlope: 0
         outSlope: 0
         tangentMode: 136

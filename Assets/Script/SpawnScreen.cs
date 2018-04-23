@@ -26,7 +26,7 @@ public class SpawnScreen : MonoBehaviour {
                 GameObject sp = Instantiate(ScreenPrefab);
                 sp.transform.SetParent(this.transform);
                 sp.GetComponent<AVPlayOnUGUI>().SetupGui(i);
-                sp.GetComponent<AVPlayOnUGUI>().InitializeMainTitleAnimList();
+              //  sp.GetComponent<AVPlayOnUGUI>().InitializeMainTitleAnimList();
                 spList.Add(sp);
             }
 
