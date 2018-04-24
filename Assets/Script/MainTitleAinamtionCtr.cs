@@ -15,14 +15,7 @@ public class MainTitleAinamtionCtr : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //if (Input.GetKeyDown(KeyCode.Q))
-        //{
-        //    PlayAnimation_1(true);
-        //}
-        //else if (Input.GetKeyDown(KeyCode.W))
-        //{
-        //    PlayAnimation_1(false);
-        //}
+
     }
 
     public void ShowAndHideMainTitle(int AnimationNum , bool b) {
@@ -36,6 +29,10 @@ public class MainTitleAinamtionCtr : MonoBehaviour {
 
                 case 2:
                     StartCoroutine(PlayAnimation_2(AnimationNum));
+                    break;
+
+                case 3:
+                    PlayAnimation_3(AnimationNum);
                     break;
 
                 default:
@@ -65,9 +62,19 @@ public class MainTitleAinamtionCtr : MonoBehaviour {
         {
            // Debug.Log("动画");
             item.SetInteger("AnimnationNum", num);
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(.25f);
         }
     }
+
+    void PlayAnimation_3(int num)
+    {
+        foreach (Animator item in MainTitleAnimatorList)
+        {
+            item.SetInteger("AnimnationNum", num);
+            item.GetComponent<UIClinet>().rightMenuBar.Close("关闭");
+        }
+    }
+
 
 
 }

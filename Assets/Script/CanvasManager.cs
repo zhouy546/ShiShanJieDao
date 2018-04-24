@@ -25,6 +25,9 @@ public class CanvasManager : MonoBehaviour,IPointerDownHandler,IBeginDragHandler
     int total;
 
     #endregion
+    [SerializeField]
+    int defultHideBartime, defultShowBartime;
+
     int ShowBarTime=10,HideBarTime = 10;
     [SerializeField]
     UIClinet[] SectionUIClinet;
@@ -59,25 +62,29 @@ public class CanvasManager : MonoBehaviour,IPointerDownHandler,IBeginDragHandler
             DebugCanvas.gameObject.SetActive(true);
         }
 
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(0))
+        {
             if (MainTitleAinamtionCtr.instance.isShowMaintitle)
             {
-                HideBarTime = 10;
+                HideBarTime = defultHideBartime;
             }
-            else {
+            else
+            {
                 ShowBarTime = 1;
             }
-
-             
-
-
-            //ScreenProtecttick = 0;
-            //Debug.Log("hit");
-            //if (MainTitleAinamtionCtr.instance.isShowMaintitle) {
-
-            //    StartCoroutine(coroutine);
-            //}
         }
+
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    MainTitleAinamtionCtr.instance.ShowAndHideMainTitle(3, true);
+        //    MainTitleAinamtionCtr.instance.isShowMaintitle = true;
+        //}
+        //else if (Input.GetKeyDown(KeyCode.W))
+        //{
+        //    MainTitleAinamtionCtr.instance.ShowAndHideMainTitle(3, false);
+        //    MainTitleAinamtionCtr.instance.isShowMaintitle = false;
+        //}
+
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -111,14 +118,14 @@ public class CanvasManager : MonoBehaviour,IPointerDownHandler,IBeginDragHandler
     public int RandomInt(float min, float Max) {
         float fvalue = UnityEngine.Random.Range(min, Max);
        // Debug.Log(fvalue);
-    int  value = Mathf.RoundToInt(fvalue);
+    int  value = Mathf.FloorToInt(fvalue);
      //   Debug.Log(value);
         return value;
     }
 
     public IEnumerator ShowBar()
     {
-        while (ShowBarTime >= 0)
+        while (ShowBarTime >0)
         {
             yield return new WaitForSeconds(1);
             print(ShowBarTime);
@@ -126,10 +133,10 @@ public class CanvasManager : MonoBehaviour,IPointerDownHandler,IBeginDragHandler
             if (ShowBarTime == 0) {
                 // Debug.Log("Show Bar");
                 int value;
-                value = RandomInt(1, 2);
+                value = RandomInt(1, 4);
                 MainTitleAinamtionCtr.instance.ShowAndHideMainTitle(value, true);
                 MainTitleAinamtionCtr.instance.isShowMaintitle = true;
-                HideBarTime = 10;
+                HideBarTime = defultHideBartime;
                 StartCoroutine(HideBar());
 
             }
@@ -138,7 +145,7 @@ public class CanvasManager : MonoBehaviour,IPointerDownHandler,IBeginDragHandler
     }
 
     public IEnumerator HideBar() {
-        while (HideBarTime >= 0)
+        while (HideBarTime > 0)
         {
             yield return new WaitForSeconds(1);
             print(HideBarTime);
@@ -147,10 +154,10 @@ public class CanvasManager : MonoBehaviour,IPointerDownHandler,IBeginDragHandler
             {
                 //  Debug.Log("Hide Bar");
                 int value;
-                value = RandomInt(1, 2);
+                value = RandomInt(1, 4);
                 MainTitleAinamtionCtr.instance.ShowAndHideMainTitle(value, false);
                 MainTitleAinamtionCtr.instance.isShowMaintitle = false;
-                ShowBarTime = 10;
+                ShowBarTime = defultShowBartime;
                 StartCoroutine(ShowBar());
 
             }

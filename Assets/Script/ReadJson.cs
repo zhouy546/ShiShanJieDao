@@ -4,7 +4,6 @@ using UnityEngine;
 using System.IO;
 using LitJson;
 using UnityEngine.UI;
-
 public class ReadJson : MonoBehaviour {
 
     public bool IsPawnAllScreen;
@@ -12,7 +11,7 @@ public class ReadJson : MonoBehaviour {
     public static ReadJson instance;
     private JsonData itemDate;
     private string jsonString;
-    
+ 
    public List<Information> myinformationList = new List<Information>();
     // Use this for initialization
   //  [SerializeField]
