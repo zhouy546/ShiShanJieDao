@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class ChartMover : MonoBehaviour {
     float[] DefaultXpos = { -892.5f,0,892.5f};
-    public GameObject[] slots;
-    public GameObject[] tempSlot = new GameObject[3];
-    // Use this for initialization
+    public List<GameObject> slots;
+    public List<GameObject> tempSlot;    // Use this for initialization
     List<int> interger = new List<int>();
 
     void Start () {
@@ -15,44 +14,54 @@ public class ChartMover : MonoBehaviour {
 
 
     public void MoveSlot(string Direction) {
-        //tempSlot = slots;
 
+        UpdateList(Direction);
+
+        //updateImage
+
+        //move item
         if (Direction == "right")
         {
-            LeanTween.moveLocalX(slots[0], DefaultXpos[1], .5f);
-            LeanTween.moveLocalX(slots[1], DefaultXpos[2], .5f);
-            LeanTween.moveLocalX(slots[2], DefaultXpos[0], .5f);
+            slots[2].SetActive(true);
+            slots[1].SetActive(true);
+            slots[0].SetActive(false);
+
+        }
+        else if (Direction == "left") {
+            slots[2].SetActive(false);
+            slots[1].SetActive(true);
+            slots[0].SetActive(true);
+        }
+        for (int i = 0; i < slots.Count; i++)
+        {
+            LeanTween.moveLocalX(slots[i], DefaultXpos[i], .5f);
+        }
+    }
+
+    private void UpdateList(string Direction)
+    {
+        if (Direction == "right")
+        {
+            for (int i = 0; i < slots.Count; i++)
+            {
+                tempSlot[getInt(i, Direction)] = slots[i];
+            }
         }
         else if (Direction == "left")
         {
-            LeanTween.moveLocalX(slots[0], DefaultXpos[2], .5f);
-            LeanTween.moveLocalX(slots[1], DefaultXpos[0], .5f);
-            LeanTween.moveLocalX(slots[2], DefaultXpos[1], .5f);
+            for (int i = 0; i < slots.Count; i++)
+            {
+                tempSlot[getInt(i, Direction)] = slots[i];
+            }
         }
 
-
-        for (int i = 0; i < slots.Length; i++)
+        slots.Clear();
+        foreach (GameObject item in tempSlot)
         {
-            interger.Add(getInt(i, Direction));
+            slots.Add(item);
+
         }
-        tempSlot[0] = slots[interger[0]];//1
-        tempSlot[1]=slots[interger[1]];//2
-        tempSlot[2]=slots[interger[2]];//0
-
-        for (int j = 0; j < tempSlot.Length; j++)
-        {
-            //Debug.Log(tempSlot[j].name);
-         }
-        interger.Clear();
-
-        slots[0] = tempSlot[0] ;//1
-        slots[1]= tempSlot[1];//2
-        slots[2] = tempSlot[2] ;//0
-
-        
     }
-
-
     // Update is called once per frame
 
 
