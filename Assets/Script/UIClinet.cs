@@ -70,7 +70,9 @@ public class UIClinet : MonoBehaviour, IPointerDownHandler
     public LoccaterManager loccaterManager;
     public AVPlayOnUGUI AVplayOnUGUI;
     public GameObject DisplayLayer;
+    public GameObject[] MidInfo = new GameObject[2];
     public info myinfo;
+
     #endregion
 
     // Use this for initialization

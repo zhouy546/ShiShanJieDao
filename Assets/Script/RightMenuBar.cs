@@ -11,7 +11,7 @@ public class RightMenuBar : MonoBehaviour, IPointerDownHandler
 
     public TextChangeLine textChangeLine;
 
-    public GameObject BtnPrefab, ClosePrefab;
+    public GameObject BtnPrefab, ClosePrefab,BtnChartPrefab;
 
     public Color HighlightColor, DefalutColor;
 
@@ -55,6 +55,8 @@ public class RightMenuBar : MonoBehaviour, IPointerDownHandler
             InstantiateAbtn(BtnPrefab, s[i], this.transform,true);
          
         }
+        InstantiateAbtn(BtnChartPrefab, "chart", this.transform, false);
+
         InstantiateAbtn(ClosePrefab, "关闭", this.transform,false);
     }
 
@@ -109,15 +111,20 @@ public class RightMenuBar : MonoBehaviour, IPointerDownHandler
         if (s == "关闭")
         {
             Close(s);
+        } else if (s=="chart") {
+            uIClinet.MidInfo[0].SetActive(false);
+            uIClinet.MidInfo[1].SetActive(true);
         }
         else {
+            uIClinet.MidInfo[0].SetActive(true);
+            uIClinet.MidInfo[1].SetActive(false);
             uIClinet.LookingForSubContent(GetTargetNumber(eventData));
             string bigTitle = ReadJson.instance.myinformationList[uIClinet.myinfo.CurrentID].ID_BigTitledictionary[uIClinet.myinfo.CurrentID];
             //Debug.Log(bigTitle);
-           // Debug.Log(eventData.pointerCurrentRaycast.gameObject.name);
+            // Debug.Log(eventData.pointerCurrentRaycast.gameObject.name);
             string getBaseString = ReadJson.instance.myinformationList[uIClinet.myinfo.CurrentID].SubTitle_MainContentdictionary[eventData.pointerCurrentRaycast.gameObject.name];
-            
-      //      Debug.Log(getBaseString);
+
+            //      Debug.Log(getBaseString);
             textChangeLine.TextAlignment(getBaseString);
         }
     }
