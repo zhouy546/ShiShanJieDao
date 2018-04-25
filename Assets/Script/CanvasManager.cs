@@ -66,7 +66,7 @@ public class CanvasManager : MonoBehaviour,IPointerDownHandler,IBeginDragHandler
         {
             if (MainTitleAinamtionCtr.instance.isShowMaintitle)
             {
-                HideBarTime = defultHideBartime;
+                HideBarTime = 60;//设置回到屏保界面时间为60秒；
             }
             else
             {
@@ -110,10 +110,6 @@ public class CanvasManager : MonoBehaviour,IPointerDownHandler,IBeginDragHandler
 
         //  ScreenProtect();
     }
-
-    //void SetGraphicRayCaster(GraphicRaycaster raycaster,bool active) {
-    //    raycaster.enabled = active;
-    //}
 
     public int RandomInt(float min, float Max) {
         float fvalue = UnityEngine.Random.Range(min, Max);
@@ -163,7 +159,6 @@ public class CanvasManager : MonoBehaviour,IPointerDownHandler,IBeginDragHandler
             }
         }
     }
-
 
         public void showFrameRate() {
         if (FrameRateToggle.isOn)

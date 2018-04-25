@@ -556,18 +556,13 @@ public class UIClinet : MonoBehaviour, IPointerDownHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         string s = eventData.pointerCurrentRaycast.gameObject.name;
-    //    Debug.Log(s);
+       // Debug.Log(s);
         if (s == myinfo.BigTitle.text) {
             DisplayLayer.SetActive(true);
 
             AVplayOnUGUI.OnAndOffMainBigTitle(false);
+            // CanvasManager.instance.SetHideBarTime(60);//设置回到屏保界面时间为60秒；
 
-            //close None Display UI
-            //for (int i = 0; i < AVplayOnUGUI.player.Length; i++)
-            //{
-
-            //    AVplayOnUGUI.player[i].Pause();
-            //}
             canvas.sortingOrder = 2;
             SetxPos(0);
             //AVplayOnUGUI.player[i].transform.localPosition.x = 0;
