@@ -124,7 +124,7 @@ public class CanvasManager : MonoBehaviour,IPointerDownHandler,IBeginDragHandler
         while (ShowBarTime >0)
         {
             yield return new WaitForSeconds(1);
-            print(ShowBarTime);
+         //   print(ShowBarTime);
             ShowBarTime--;
             if (ShowBarTime == 0) {
                 // Debug.Log("Show Bar");
@@ -144,7 +144,7 @@ public class CanvasManager : MonoBehaviour,IPointerDownHandler,IBeginDragHandler
         while (HideBarTime > 0)
         {
             yield return new WaitForSeconds(1);
-            print(HideBarTime);
+         //   print(HideBarTime);
             HideBarTime--;
             if (HideBarTime == 0)
             {

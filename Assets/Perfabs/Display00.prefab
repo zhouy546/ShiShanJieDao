@@ -157,6 +157,7 @@ GameObject:
   - component: {fileID: 224763703627672402}
   - component: {fileID: 222499705904738512}
   - component: {fileID: 114133841700153160}
+  - component: {fileID: 114297327086979048}
   m_Layer: 5
   m_Name: MainContent
   m_TagString: Untagged
@@ -1237,6 +1238,7 @@ GameObject:
   - component: {fileID: 224469828319986020}
   - component: {fileID: 222027782444257098}
   - component: {fileID: 114285339419234870}
+  - component: {fileID: 114670397603286976}
   m_Layer: 5
   m_Name: MainContent
   m_TagString: Untagged
@@ -1997,7 +1999,7 @@ MonoBehaviour:
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1.5
   m_Text: "\u4E2D\u56FD\u56FD\u56FD\u5BB6\u6797\u4E2D\u56FD\u56FD\u56FD\u5BB6\u6797\u4E2D\u56FD\u56FD\u56FD\u5BB6\u6797\u4E2D\u56FD\u56FD\u56FD\u5BB6\u6797\u4E2D\u56FD\u56FD\u56FD\u5BB6\u6797\u4E2D\u56FD\u56FD\u56FD\u5BB6\u6797\u4E2D\u56FD\u56FD\u56FD\u5BB6\u6797\u4E2D\u56FD\u56FD\u56FD\u5BB6\u6797\u4E2D\u56FD\u56FD\u56FD\u5BB6\u6797"
@@ -2442,7 +2444,7 @@ MonoBehaviour:
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1.5
   m_Text: 'MainContent '
@@ -2473,6 +2475,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 0
   m_FillOrigin: 0
+--- !u!114 &114297327086979048
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1166951615511986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efe5091cc6bca574abccee3ab7827e2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NumOfCharEveryLane: 25
 --- !u!114 &114298276697826222
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2883,6 +2897,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbd537344a550ca4ca27e9a068c6a894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textChangeLine: {fileID: 114670397603286976}
   BtnPrefab: {fileID: 1296133107369574, guid: cceff4b5c96a0d64ba0d784ba5855e2e, type: 2}
   ClosePrefab: {fileID: 1296133107369574, guid: eeb31305cfaa38a438b2aa1c7d231e7c,
     type: 2}
@@ -3823,6 +3838,18 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
+--- !u!114 &114670397603286976
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1823023984125674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efe5091cc6bca574abccee3ab7827e2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NumOfCharEveryLane: 25
 --- !u!114 &114701024329904884
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4886,6 +4913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbd537344a550ca4ca27e9a068c6a894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textChangeLine: {fileID: 114297327086979048}
   BtnPrefab: {fileID: 1296133107369574, guid: cceff4b5c96a0d64ba0d784ba5855e2e, type: 2}
   ClosePrefab: {fileID: 1296133107369574, guid: eeb31305cfaa38a438b2aa1c7d231e7c,
     type: 2}

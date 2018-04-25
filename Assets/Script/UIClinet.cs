@@ -483,7 +483,7 @@ public class UIClinet : MonoBehaviour, IPointerDownHandler
     
     }
 
-    void UpdateSubtitle(string Direction) {
+    public void UpdateSubtitle(string Direction) {
             myinfo.CurrentSubtitleNum = LoopNumber(Direction, ReadJson.instance.myinformationList[myinfo.CurrentID].SubImage.Length, myinfo.CurrentSubtitleNum);
 
     string Highlightbtn = ReadJson.instance.myinformationList[myinfo.CurrentID].SubTitle[myinfo.CurrentSubtitleNum];

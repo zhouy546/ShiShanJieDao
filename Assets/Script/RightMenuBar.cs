@@ -8,6 +8,9 @@ using UnityEngine.EventSystems;
 
 public class RightMenuBar : MonoBehaviour, IPointerDownHandler
 {
+
+    public TextChangeLine textChangeLine;
+
     public GameObject BtnPrefab, ClosePrefab;
 
     public Color HighlightColor, DefalutColor;
@@ -109,7 +112,13 @@ public class RightMenuBar : MonoBehaviour, IPointerDownHandler
         }
         else {
             uIClinet.LookingForSubContent(GetTargetNumber(eventData));
-
+            string bigTitle = ReadJson.instance.myinformationList[uIClinet.myinfo.CurrentID].ID_BigTitledictionary[uIClinet.myinfo.CurrentID];
+            //Debug.Log(bigTitle);
+           // Debug.Log(eventData.pointerCurrentRaycast.gameObject.name);
+            string getBaseString = ReadJson.instance.myinformationList[uIClinet.myinfo.CurrentID].SubTitle_MainContentdictionary[eventData.pointerCurrentRaycast.gameObject.name];
+            
+      //      Debug.Log(getBaseString);
+            textChangeLine.TextAlignment(getBaseString);
         }
     }
 
