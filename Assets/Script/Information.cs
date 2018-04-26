@@ -11,6 +11,7 @@ public class Information : MonoBehaviour {
     public string[] OtherTitleContent;
     public Sprite[] SubImage;
     public Sprite[] OtherTitleImage;
+    public Sprite[] Chart;
     public Sprite MainTitleImage;
     public Sprite BackgroundImage;
 
@@ -64,12 +65,8 @@ public class Information : MonoBehaviour {
 
         SubImage = ArraySprite(SubTitle);
         OtherTitleImage = ArraySprite(OtherTitleContent);
-
+        Chart = ReadAllImage("Image/" + BigTitle + "/" + "Chart");
     }
-
-
-
-
 
     Sprite[] ArraySprite(string[] tag) {
         List<Sprite> sprite = new List<Sprite>();
@@ -78,7 +75,6 @@ public class Information : MonoBehaviour {
             Sprite temp = ReadImage("Image/" + BigTitle + "/" + tag[i]);
             sprite.Add(temp);
         }
-
         return sprite.ToArray();
     }
     /*
@@ -88,6 +84,12 @@ public class Information : MonoBehaviour {
         return temp;
     }
     */
+
+    Sprite[] ReadAllImage(string path) {
+        Sprite[] temp = Resources.LoadAll<Sprite>(path);
+        return temp;
+    }
+
     Sprite ReadImage(string path) {
        // Debug.Log(path);
         Sprite temp = Resources.Load<Sprite>(path);

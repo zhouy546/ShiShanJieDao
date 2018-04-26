@@ -71,6 +71,7 @@ public class UIClinet : MonoBehaviour, IPointerDownHandler
     public AVPlayOnUGUI AVplayOnUGUI;
     public GameObject DisplayLayer;
     public GameObject[] MidInfo = new GameObject[2];
+    public TextChangeLine textChangeLine;
     public info myinfo;
 
     #endregion
@@ -491,9 +492,21 @@ public class UIClinet : MonoBehaviour, IPointerDownHandler
     string Highlightbtn = ReadJson.instance.myinformationList[myinfo.CurrentID].SubTitle[myinfo.CurrentSubtitleNum];
         // Debug.Log("I ma here the important num"+myinfo.CurrentSubtitleNum);
         SetupMidRightBtnHighlightColor(Highlightbtn);
-        SetupMidToptext();
-        setupMidTopImage();
-     }
+        if (Highlightbtn != "图表")
+        {
+            MidInfo[0].SetActive(true);
+            MidInfo[1].SetActive(false);
+            SetupMidToptext();
+            setupMidTopImage();
+            string getBaseString = ReadJson.instance.myinformationList[myinfo.CurrentID].SubTitle_MainContentdictionary[Highlightbtn];
+            textChangeLine.TextAlignment(getBaseString);
+        }
+        else {
+            MidInfo[0].SetActive(false);
+            MidInfo[1].SetActive(true);
+        }
+
+    }
 
 
     void SetupMidRightBtnHighlightColor(string HighlightBtn) {

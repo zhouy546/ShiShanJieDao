@@ -9,9 +9,9 @@ using UnityEngine.EventSystems;
 public class RightMenuBar : MonoBehaviour, IPointerDownHandler
 {
 
-    public TextChangeLine textChangeLine;
+   
 
-    public GameObject BtnPrefab, ClosePrefab,BtnChartPrefab;
+    public GameObject BtnPrefab, ClosePrefab;
 
     public Color HighlightColor, DefalutColor;
 
@@ -22,7 +22,7 @@ public class RightMenuBar : MonoBehaviour, IPointerDownHandler
     public Dictionary<string, Image> subtitleMenuImg = new Dictionary<string, Image>();
     Image PerivousHighlight;
     string[] subtitle;
-
+    private GameObject ChartBtn;
     // Use this for initialization
     void Start()
     {
@@ -55,13 +55,12 @@ public class RightMenuBar : MonoBehaviour, IPointerDownHandler
             InstantiateAbtn(BtnPrefab, s[i], this.transform,true);
          
         }
-        InstantiateAbtn(BtnChartPrefab, "chart", this.transform, false);
 
         InstantiateAbtn(ClosePrefab, "关闭", this.transform,false);
     }
 
 
-    void InstantiateAbtn(GameObject g, string name, Transform praent, bool addtoMenuList) {
+    GameObject  InstantiateAbtn(GameObject g, string name, Transform praent, bool addtoMenuList) {
         GameObject _gameObject = Instantiate(g);
         _gameObject.transform.SetParent(praent);
         _gameObject.name = name;
@@ -70,6 +69,7 @@ public class RightMenuBar : MonoBehaviour, IPointerDownHandler
         }
         _gameObject.transform.localScale = Vector3.one;
         _gameObject.transform.localPosition = new Vector3(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y, 0);
+        return _gameObject;
     }
     // Update is called once per frame
     void Update()
@@ -92,6 +92,8 @@ public class RightMenuBar : MonoBehaviour, IPointerDownHandler
 
     }
 
+
+
     public void Close(string s) {
             uIClinet.DisplayLayer.SetActive(false);
         uIClinet.AVplayOnUGUI.OnAndOffMainBigTitle(true);
@@ -111,9 +113,9 @@ public class RightMenuBar : MonoBehaviour, IPointerDownHandler
         if (s == "关闭")
         {
             Close(s);
-        } else if (s=="chart") {
-            uIClinet.MidInfo[0].SetActive(false);
-            uIClinet.MidInfo[1].SetActive(true);
+        } else if (s=="图表") {
+            uIClinet.LookingForSubContent(GetTargetNumber(eventData));
+
         }
         else {
             uIClinet.MidInfo[0].SetActive(true);
@@ -122,10 +124,9 @@ public class RightMenuBar : MonoBehaviour, IPointerDownHandler
             string bigTitle = ReadJson.instance.myinformationList[uIClinet.myinfo.CurrentID].ID_BigTitledictionary[uIClinet.myinfo.CurrentID];
             //Debug.Log(bigTitle);
             // Debug.Log(eventData.pointerCurrentRaycast.gameObject.name);
-            string getBaseString = ReadJson.instance.myinformationList[uIClinet.myinfo.CurrentID].SubTitle_MainContentdictionary[eventData.pointerCurrentRaycast.gameObject.name];
 
-            //      Debug.Log(getBaseString);
-            textChangeLine.TextAlignment(getBaseString);
+
+
         }
     }
 
