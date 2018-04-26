@@ -251,7 +251,11 @@ public class UIClinet : MonoBehaviour, IPointerDownHandler
 
     void setupMidTopImage() {
         Sprite temp = ReadJson.instance.myinformationList[myinfo.CurrentID].SubTitle_SubImagedictionary[myinfo.SubTitle.text];
-        loccaterManager.HighlightBtn(myinfo.SubTitle.text);
+        //if (myinfo.CurrentID == 0) {
+        //    //  Debug.Log(ReadJson.instance.myinformationList[myinfo.CurrentID].SubTitle[myinfo.CurrentSubtitleNum]);
+        //    Debug.Log(myinfo.CurrentSubtitleNum);
+        //}
+        loccaterManager.HighlightBtn(ReadJson.instance.myinformationList[myinfo.CurrentID].SubTitle[myinfo.CurrentSubtitleNum]);
         myinfo.BigTitleImage.sprite = temp;
         SetupTopBarImage();
     }
@@ -504,6 +508,8 @@ public class UIClinet : MonoBehaviour, IPointerDownHandler
         else {
             MidInfo[0].SetActive(false);
             MidInfo[1].SetActive(true);
+          //  SetupMidToptext();
+            setupMidTopImage();//为了设置最右边的小圆点高亮
         }
 
     }

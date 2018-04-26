@@ -28,8 +28,14 @@ public class Information : MonoBehaviour {
         ID = _id;
         BigTitle = _bigTitle;
         SubTitle = _subTitle;
+      
         MainContent = _mainContent;
         OtherTitleContent = _otherTitleContent;
+        //for (int i = 0; i < SubTitle.Length; i++)
+        //{
+        //    Debug.Log(SubTitle[i]);
+        //}
+
     }
 
     public void setupDictionary() {

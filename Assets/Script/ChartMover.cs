@@ -8,7 +8,7 @@ public class ChartMover : MonoBehaviour {
     [SerializeField]
     UIClinet uIClinet;
 
-    float[] DefaultXpos = { -892.5f,0,892.5f};
+    float[] DefaultXpos = { -991,0,991};
     public List<GameObject> slots;
     public List<GameObject> tempSlot;    // Use this for initialization
     List<int> interger = new List<int>();
