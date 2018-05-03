@@ -55,64 +55,90 @@ public class TextChangeLine : MonoBehaviour {
 
     char[] PunctuationCheck(int num, LinkedList<char> _theChar,LinkedList<char> addFirst)
     {
+        text.horizontalOverflow = HorizontalWrapMode.Overflow;
+
         int currentNum = 1;
        
         IEnumerator<char> enumerator = _theChar.GetEnumerator();
-        Debug.Log(enumerator.MoveNext());//删除某些地方会奇怪报错
+       // Debug.Log(enumerator.MoveNext());//删除某些地方会奇怪报错
         LinkedList<char> row = new LinkedList<char>();
-        while (enumerator.MoveNext())
+
+
+        LinkedListNode<char> Node;
+        try
         {
-            //添加文字到ROW
-            row.AddLast(enumerator.Current);
-            if (currentNum % num == 0)//换行字数
-            {          
-                LinkedListNode<char> Node = _theChar.Find(enumerator.Current);
-                if (Char.IsPunctuation(Node.Next.Value)) {//若换行后第一个为标点，缩进标点
-                    //添加标点
-                    row.AddLast(Node.Next.Value);
-                    //添加\N
-                    InsertLinkedList(row, addFirst);
-                    //检查第一个是否是标点
-                    if (Char.IsPunctuation(row.First.Value)){
-                        row.RemoveFirst();
+            while (enumerator.MoveNext())
+            {
+                //添加文字到ROW
+                row.AddLast(enumerator.Current);
+                if (currentNum % num == 0)//换行字数
+                {
+
+                    Node = _theChar.Find(enumerator.Current);
+                    if (Node != null) {
+                        if (Char.IsPunctuation(Node.Next.Value))
+                        {//若换行后第一个为标点，缩进标点
+                         //添加标点
+                            row.AddLast(Node.Next.Value);
+                            //添加\N
+                            InsertLinkedList(row, addFirst);
+                            //检查第一个是否是标点
+                            if (Char.IsPunctuation(row.First.Value))
+                            {
+                                row.RemoveFirst();
+                            }
+
+                            //将row添加到NewChar
+                            InsertLinkedList(NewChar, row);
+                            row.Clear();
+                            // Debug.Log(row.Count);
+
+                        }
+                        else
+                        {
+                            InsertLinkedList(row, addFirst);
+
+                            if (Char.IsPunctuation(row.First.Value))
+                            {
+                                row.RemoveFirst();
+                            }
+                            InsertLinkedList(NewChar, row);
+                            row.Clear();
+
+                        }
                     }
-
-                    //将row添加到NewChar
-                    InsertLinkedList(NewChar, row);
-                    row.Clear();
-                   // Debug.Log(row.Count);
-
+                   
                 }
-                else {
-                    InsertLinkedList(row, addFirst);
 
-                    if (Char.IsPunctuation(row.First.Value))
-                    {
-                        row.RemoveFirst();
-                    }
-                    InsertLinkedList(NewChar, row);
-                    row.Clear();
-
-                }
+                currentNum++;
             }
 
-            currentNum++;
-        }
 
+            if (Char.IsPunctuation(row.First.Value))
+            {
+                row.RemoveFirst();
+            }
 
-        if (Char.IsPunctuation(row.First.Value))
-        {
-            row.RemoveFirst();
-        }
-
-        InsertLinkedList(NewChar, row);
+            InsertLinkedList(NewChar, row);
             row.Clear();
 
 
-        // IEnumerator<char> addenumerator = addFirst.GetEnumerator();
+            // IEnumerator<char> addenumerator = addFirst.GetEnumerator();
 
 
+        }
+        catch (Exception e)
+        {
+           Debug.Log(e);
+            string ss = new string(_theChar.ToArray());
+           // Debug.Log(ss);
+            text.text = ss;
+            text.horizontalOverflow = HorizontalWrapMode.Wrap;
+
+            return _theChar.ToArray();
+        }
         return NewChar.ToArray();
+
     }
 
 

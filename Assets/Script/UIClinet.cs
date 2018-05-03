@@ -496,7 +496,7 @@ public class UIClinet : MonoBehaviour, IPointerDownHandler
     string Highlightbtn = ReadJson.instance.myinformationList[myinfo.CurrentID].SubTitle[myinfo.CurrentSubtitleNum];
         // Debug.Log("I ma here the important num"+myinfo.CurrentSubtitleNum);
         SetupMidRightBtnHighlightColor(Highlightbtn);
-        if (Highlightbtn != "图表")
+        if (Highlightbtn != "任务表")
         {
             MidInfo[0].SetActive(true);
             MidInfo[1].SetActive(false);
