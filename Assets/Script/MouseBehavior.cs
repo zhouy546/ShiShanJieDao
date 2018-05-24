@@ -7,6 +7,8 @@ public class MouseBehavior : MonoBehaviour,IBeginDragHandler,IDragHandler,IEndDr
     //public enum InteractionTypes {
     //    Click, ScrollLeftRight,ScrollUpDown
     //}
+    public static bool isUpDownDirection=true;
+    public delegate float MoveDistanceDelegate();
 
     public enum Move
     {
@@ -19,10 +21,22 @@ public class MouseBehavior : MonoBehaviour,IBeginDragHandler,IDragHandler,IEndDr
         public Vector2 StartPos;
         public Vector2 UpdatePos;
         public Vector2 EndPos;
-        private float Ymovedis;
+        private float movedis;
         public float MoveDistance
         {
-            get { return Ymovedis = Mathf.Abs(EndPos.y-StartPos.y); }
+
+            get {
+
+                if (MouseBehavior.isUpDownDirection)
+                {
+                    return movedis = Mathf.Abs(EndPos.y - StartPos.y);
+                }
+                else
+                {
+                    return movedis = Mathf.Abs(EndPos.x - StartPos.x);
+                }
+
+            }
         }
     }
 
@@ -43,7 +57,16 @@ public class MouseBehavior : MonoBehaviour,IBeginDragHandler,IDragHandler,IEndDr
     {
         client.UpdatePos = eventData.position;
         client.EndPos = eventData.position;
-        MoveBehavior(MoveDirection());
+
+        if (isUpDownDirection)
+        {
+            MoveBehavior(MoveDirection(yAxisDis));
+
+        }
+        else
+        {
+            MoveBehavior(MoveDirection(xAxisDis));
+        }
 
     }
 
@@ -70,15 +93,16 @@ public class MouseBehavior : MonoBehaviour,IBeginDragHandler,IDragHandler,IEndDr
         }
     }
 
-    public Move MoveDirection()
+    public Move MoveDirection(MoveDistanceDelegate moveDistanceDelegate)
     {
-        if (xAxisDis() > 0 && client.MoveDistance > 100)
+        float dis = moveDistanceDelegate();
+        if (dis > 0 && client.MoveDistance > 100)
         {
             //Debug.Log("move down");
             client.StartPos = client.EndPos;
             return Move.MoveLeft;
         }
-        else if(xAxisDis()<0&&client.MoveDistance > 100) {
+        else if(dis < 0&&client.MoveDistance > 100) {
             //Debug.Log("move up");
             client.StartPos = client.EndPos;
             return Move.MoveRight;
@@ -86,8 +110,12 @@ public class MouseBehavior : MonoBehaviour,IBeginDragHandler,IDragHandler,IEndDr
         return Move.Idle;
     }
 
-    float xAxisDis() {
+    float yAxisDis() {
         return client.EndPos.y - client.StartPos.y;
+    }
+
+    float xAxisDis() {
+        return client.EndPos.x - client.StartPos.x;
     }
 
 
@@ -95,24 +123,6 @@ public class MouseBehavior : MonoBehaviour,IBeginDragHandler,IDragHandler,IEndDr
        // Debug.Log("OnDrop");
     }
 
-
-   public void HighlightBtn(string h) {
-        //switch (interactionTypes)
-        //{
-        //    case InteractionTypes.Click:
-
-        //        break;
-
-        //    case InteractionTypes.ScrollLeftRight:
-        //        break;
-
-        //    case InteractionTypes.ScrollUpDown:
-        //        break;
-
-        //    default:
-        //        break;
-        //}
-    }
 
     // Use this for initialization
     void Start () {
