@@ -9,7 +9,7 @@ using UnityEngine.Video;
 public class UIClinet : MonoBehaviour, IPointerDownHandler
 {
     #region Para
-
+	public bool enableIneraction;
     //VideoClip videoClip;
     //VideoPlayer myVideoPlayer;
     public GameObject MainBigTitlePlane;
@@ -576,20 +576,24 @@ public class UIClinet : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        string s = eventData.pointerCurrentRaycast.gameObject.name;
-       // Debug.Log(s);
-        if (s == myinfo.BigTitle.text) {
-            DisplayLayer.SetActive(true);
+		if (enableIneraction) {
+			string s = eventData.pointerCurrentRaycast.gameObject.name;
+			// Debug.Log(s);
+			if (s == myinfo.BigTitle.text) {
+				DisplayLayer.SetActive(true);
 
-            AVplayOnUGUI.OnAndOffMainBigTitle(false);
-            // CanvasManager.instance.SetHideBarTime(60);//设置回到屏保界面时间为60秒；
+				AVplayOnUGUI.OnAndOffMainBigTitle(false);
+				// CanvasManager.instance.SetHideBarTime(60);//设置回到屏保界面时间为60秒；
 
-            canvas.sortingOrder = 2;
-            SetxPos(0);
-            //AVplayOnUGUI.player[i].transform.localPosition.x = 0;
+				canvas.sortingOrder = 2;
+				SetxPos(0);
+				//AVplayOnUGUI.player[i].transform.localPosition.x = 0;
 
-            this.GetComponent<MouseBehavior>().enabled = true;
-        }
+				this.GetComponent<MouseBehavior>().enabled = true;
+			}
+		
+		}
+
     }
 
     public void SetxPos(float x) {

@@ -11,7 +11,8 @@ public class AVPlayOnUGUI : MonoBehaviour
     public RawImage[] rawImage;
     public VideoPlayer[] player;
     [SerializeField]
-    private UIClinet[] iClinet;
+    private 
+	UIClinet[] iClinet;
     public UIMode UI;
     public enum UIMode
     {

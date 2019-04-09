@@ -4,6 +4,9 @@ using UnityEngine;
 using System.IO;
 using LitJson;
 using UnityEngine.UI;
+using System.Linq;
+
+
 public class ReadJson : MonoBehaviour {
 
     public bool IsPawnAllScreen;
@@ -11,6 +14,7 @@ public class ReadJson : MonoBehaviour {
     public static ReadJson instance;
     private JsonData itemDate;
     private string jsonString;
+	public static List<UIClinet> UIclinets = new List<UIClinet> ();
  
    public List<Information> myinformationList = new List<Information>();
     // Use this for initialization
@@ -50,7 +54,7 @@ public class ReadJson : MonoBehaviour {
 
         if (ReadJson.instance.IsPawnAllScreen)
         {
-            Screen.SetResolution(CanvasManager.instance.DefaultScreenWidth, CanvasManager.instance.DefaultScreenHeight, false);
+            //Screen.SetResolution(CanvasManager.instance.DefaultScreenWidth, CanvasManager.instance.DefaultScreenHeight, false);
         }
         //else
         //{
@@ -66,6 +70,9 @@ public class ReadJson : MonoBehaviour {
         //    SpawnScreen.instance.SpanwnMyScreen(ScreenNum);
         //}
 
+		UIclinets =FindObjectsOfType<UIClinet> ().ToList ();
+		Cursor.visible = false;
+		//Debug.Log (UIclinets.Count);	
     }
 
 

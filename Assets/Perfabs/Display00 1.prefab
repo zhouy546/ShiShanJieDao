@@ -2704,6 +2704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35d8ea463140f404c841cc843608fb58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableIneraction: 0
   MainBigTitlePlane: {fileID: 1495720733879844}
   UnitDisplayWidth: 1280
   DefaultXpos: 0
@@ -4262,6 +4263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35d8ea463140f404c841cc843608fb58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableIneraction: 0
   MainBigTitlePlane: {fileID: 1874887965467642}
   UnitDisplayWidth: 1280
   DefaultXpos: 0

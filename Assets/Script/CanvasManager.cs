@@ -66,11 +66,19 @@ public class CanvasManager : MonoBehaviour,IPointerDownHandler,IBeginDragHandler
         {
             if (MainTitleAinamtionCtr.instance.isShowMaintitle)
             {
-                HideBarTime = 60;//设置回到屏保界面时间为60秒；
+				foreach (var item in ReadJson.UIclinets) {
+					if (!item.enableIneraction) {
+					
+						return;
+					} else {
+						HideBarTime = 60;//设置回到屏保界面时间为60秒；
+					}
+				}
+              
             }
             else
             {
-                ShowBarTime = 1;
+                //ShowBarTime = 1;
             }
         }
 
@@ -121,15 +129,18 @@ public class CanvasManager : MonoBehaviour,IPointerDownHandler,IBeginDragHandler
 
     public IEnumerator ShowBar()
     {
-        while (ShowBarTime >0)
-        {
-            yield return new WaitForSeconds(1);
-         //   print(ShowBarTime);
-            ShowBarTime--;
+		while (ShowBarTime > 0) {
+			yield return new WaitForSeconds (1);
+			//   print(ShowBarTime);
+			ShowBarTime--;
+
+			Debug.Log ("ShowBarTime_" + ShowBarTime.ToString ());
+
+
             if (ShowBarTime == 0) {
                 // Debug.Log("Show Bar");
                 int value;
-                value = RandomInt(1, 4);
+                value = RandomInt(1, 3);
                 MainTitleAinamtionCtr.instance.ShowAndHideMainTitle(value, true);
                 MainTitleAinamtionCtr.instance.isShowMaintitle = true;
                 HideBarTime = defultHideBartime;
@@ -146,11 +157,27 @@ public class CanvasManager : MonoBehaviour,IPointerDownHandler,IBeginDragHandler
             yield return new WaitForSeconds(1);
          //   print(HideBarTime);
             HideBarTime--;
+			Debug.Log ("HideBarTime_"+HideBarTime.ToString());
+			if (HideBarTime == 18) {		
+				foreach (var item in ReadJson.UIclinets) {
+					Debug.Log ("enableAllBtn");
+					item.enableIneraction = true;
+				}
+			}
+				
+			if (HideBarTime == 1){
+
+				foreach (var item in ReadJson.UIclinets) {
+					Debug.Log ("disableAllBtn");
+					item.enableIneraction = false;
+				}
+			}
+
             if (HideBarTime == 0)
             {
                 //  Debug.Log("Hide Bar");
                 int value;
-                value = RandomInt(1, 4);
+                value = RandomInt(1, 3);
                 MainTitleAinamtionCtr.instance.ShowAndHideMainTitle(value, false);
                 MainTitleAinamtionCtr.instance.isShowMaintitle = false;
                 ShowBarTime = defultShowBartime;

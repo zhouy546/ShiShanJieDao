@@ -9,7 +9,7 @@ public class MouseBehavior : MonoBehaviour,IBeginDragHandler,IDragHandler,IEndDr
     //}
     public static bool isUpDownDirection=true;
     public delegate float MoveDistanceDelegate();
-
+	private bool EnableMouse=true;
     public enum Move
     {
         MoveRight,MoveLeft,Idle
@@ -50,30 +50,31 @@ public class MouseBehavior : MonoBehaviour,IBeginDragHandler,IDragHandler,IEndDr
     }
 
     public void OnBeginDrag(PointerEventData eventData) {
-        client.StartPos = eventData.position;
+		if (EnableMouse) {
+			client.StartPos = eventData.position;
+		}     
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        client.UpdatePos = eventData.position;
-        client.EndPos = eventData.position;
+		if (EnableMouse) {
+			client.UpdatePos = eventData.position;
+			client.EndPos = eventData.position;
 
-        if (isUpDownDirection)
-        {
-            MoveBehavior(MoveDirection(yAxisDis));
+			if (isUpDownDirection) {
+				MoveBehavior (MoveDirection (yAxisDis));
 
-        }
-        else
-        {
-            MoveBehavior(MoveDirection(xAxisDis));
-        }
-
+			} else {
+				MoveBehavior (MoveDirection (xAxisDis));
+			}
+		}
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        client.EndPos = eventData.position;
-
+		if (EnableMouse) {
+			client.EndPos = eventData.position;
+		}
     }
 
     public void MoveBehavior(Move move) {

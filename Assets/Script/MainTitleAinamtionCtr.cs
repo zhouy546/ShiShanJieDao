@@ -28,11 +28,12 @@ public class MainTitleAinamtionCtr : MonoBehaviour {
                     break;
 
                 case 2:
-                    StartCoroutine(PlayAnimation_2(AnimationNum));
+				PlayAnimation_3(AnimationNum);
                     break;
 
                 case 3:
-                    PlayAnimation_3(AnimationNum);
+				StartCoroutine(PlayAnimation_2(AnimationNum));
+                  
                     break;
 
                 default:
